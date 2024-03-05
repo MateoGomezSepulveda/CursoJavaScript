@@ -131,32 +131,75 @@
 
          // ---------------------------------Arreglos-----------------------------------------
 
-        const a = [];
-        const b = ["Bailey", "alfonso", 7, ["Hola", "amigos", 2, ["jejeje", 2]]]
-        console.log(a);
-        console.log(b[0]);
-        console.log(b[3][3][0]);
+        // const a = [];
+        // const b = ["Bailey", "alfonso", 7, ["Hola", "amigos", 2, ["jejeje", 2]]]
+        // console.log(a);
+        // console.log(b[0]);
+        // console.log(b[3][3][0]);
 
-        const d = Array(100).fill(false);
+        // const d = Array(100).fill(false);
 
-        console.log(d);
+        // console.log(d);
 
-        const colores = ["Rojo", "Verde", "Azul"]
+        // const colores = ["Rojo", "Verde", "Azul"]
 
-        console.log(colores);
+        // console.log(colores);
 
     
-        // con push agregamos un valor al array y se ubica de ultimo
-        colores.push("Negro");
+        // // con push agregamos un valor al array y se ubica de ultimo
+        // colores.push("Negro");
 
-        console.log(colores);
+        // console.log(colores);
 
-        // con pop eliminamos el ultimo valor del array
-        colores.pop();
-        console.log(colores);
+        // // con pop eliminamos el ultimo valor del array
+        // colores.pop();
+        // console.log(colores);
         
-        colores.pop();
-        console.log(colores);
+        // colores.pop();
+        // console.log(colores);
+
+        
+        // ---------------------------------Ciclos-----------------------------------------
+        
+
+        let contador = 1;
+
+        while (contador < 10){
+            console.log("While"+contador);
+            contador++;
+        }
+        
+        do{
+            console.log("do while"+contador);
+            contador++;
+        }while(contador<10);
+
+
+        for (let i = 0; i < 10; i++) {
+            console.log("for"+i);    
+        }
+
+        let numeros = [10,20,30,40,50,60,70,80,90];
+
+        for (let i = 0; i < numeros.length; i++) {
+            console.log(numeros[i]);
+        }
+
+
+        const mateo = {
+            nombre: "Mateo",
+            apellido: "Gomez",
+            edad: 24
+        }
+
+        for (const propiedad in mateo) {
+            console.log(`key: ${propiedad} value: ${mateo[propiedad]}`);
+                
+        }
+
+        for (const elemento of numeros) {
+            console.log(elemento);
+        }
     </script>
 </body>
 </html>
