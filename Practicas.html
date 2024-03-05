@@ -203,30 +203,58 @@
 
         //- ---------------------------Destructuracion----------------------------------
 
-        const numeros = [1,2,3];
+        // const numeros = [1,2,3];
         
-        // Sin destructuracion
-        let uno = numeros[0],
-        dos = numeros[1],
-        tres = numeros[2];
+        // // Sin destructuracion
+        // let uno = numeros[0],
+        // dos = numeros[1],
+        // tres = numeros[2];
 
-        console.log(uno,dos,tres);
+        // console.log(uno,dos,tres);
         
-        // con destructuracion
+        // // con destructuracion
 
-        const[one, two, tree] = numeros
-        console.log(one,two,tree);
+        // const[one, two, tree] = numeros
+        // console.log(one,two,tree);
 
 
-        let persona= {
-            nombre: "Mateo",
-            apellido: "Gomez",
-            edad: 24
+        // let persona= {
+        //     nombre: "Mateo",
+        //     apellido: "Gomez",
+        //     edad: 24
+        // }
+
+        // let {nombre, apellido, edad} = persona;
+
+        // console.log(nombre,apellido,edad);
+
+        // --------------------------------Objetos Literales-----------------------------------------
+        
+        let nombre = "Bailey",
+        edad = "6 años"     
+
+        const perro = {
+            nombre: nombre,
+            edad: edad,
+            ladrar: function (){
+                console.log("guau guau");
+            }
         }
 
-        let {nombre, apellido, edad} = persona;
+        console.log(perro);
+        perro.ladrar()
 
-        console.log(nombre,apellido,edad);
+
+        const dog = {
+            nombre,
+            edad,
+            ladrar(){
+                console.log("guau guau guau");
+            }
+        }
+
+        console.log(dog);
+        dog.ladrar()
     </script>
 </body>
 </html>
