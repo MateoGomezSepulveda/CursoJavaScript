@@ -120,14 +120,43 @@
         // fucntionExpresada();
                 // --------------------------------Objetos------------------------------------------
 
-        const a = {
-            nombre: "Mateo",
-            apellido: "Gomez",
-            edad: 24,
-            pasaTiempos: ["jugar", "comer"],
-        }
+        // const a = {
+        //     nombre: "Mateo",
+        //     apellido: "Gomez",
+        //     edad: 24,
+        //     pasaTiempos: ["jugar", "comer"],
+        // }
 
+        // console.log(a);
+
+         // ---------------------------------Arreglos-----------------------------------------
+
+        const a = [];
+        const b = ["Bailey", "alfonso", 7, ["Hola", "amigos", 2, ["jejeje", 2]]]
         console.log(a);
+        console.log(b[0]);
+        console.log(b[3][3][0]);
+
+        const d = Array(100).fill(false);
+
+        console.log(d);
+
+        const colores = ["Rojo", "Verde", "Azul"]
+
+        console.log(colores);
+
+    
+        // con push agregamos un valor al array y se ubica de ultimo
+        colores.push("Negro");
+
+        console.log(colores);
+
+        // con pop eliminamos el ultimo valor del array
+        colores.pop();
+        console.log(colores);
+        
+        colores.pop();
+        console.log(colores);
     </script>
 </body>
 </html>
