@@ -259,28 +259,79 @@
         // -------------------------Parámetros REST & Operador Spread---------------------------
 
 
-        function sumar(a,b, ...c){
-            let resultado = a+b;
+        // function sumar(a,b, ...c){
+        //     let resultado = a+b;
 
-            c.forEach(function (n){
-                resultado += n
-            });
+        //     c.forEach(function (n){
+        //         resultado += n
+        //     });
 
-            return resultado;
-        }
+        //     return resultado;
+        // }
 
-        console.log(sumar(1,2));
-        console.log(sumar(1,2,3));
-        console.log(sumar());
+        // console.log(sumar(1,2));
+        // console.log(sumar(1,2,3));
+        // console.log(sumar());
 
-        const arr1 = [1,2,3,4,5,6],
-        arr2 = [6,7,8,9,0]
+        // const arr1 = [1,2,3,4,5,6],
+        // arr2 = [6,7,8,9,0]
 
-        console.log(arr1, arr2);
+        // console.log(arr1, arr2);
 
-        const arr3 = [...arr1,...arr2]
+        // const arr3 = [...arr1,...arr2]
 
-        console.log(arr3);
+        // console.log(arr3);
+
+          // ----------------------Arrow Functions--------------------------------------------
+
+        //   const saludar = (nombre) =>{
+        //         console.log(`Hola ${nombre}`);
+        //     }
+
+        //     saludar("Mateo");
+
+            const saludar = nombre =>{
+                console.log(`Hola ${nombre}`);
+            }
+
+            saludar("Mateo");
+
+            // const sumar = function(a,b){
+            //     return a+b;
+            // }
+
+            // console.log(sumar(8,9));
+
+            const sumar = (a,b) => a+b;
+            console.log(sumar(9,9));
+
+            const funcionDeVariasLineas = () =>{
+                console.log("Uno");
+                console.log("Dos");
+                console.log("Tres");
+            }
+
+            funcionDeVariasLineas();
+
+            const numeros = [1,2,3,4]
+
+            numeros.forEach((el,index)=>
+                console.log(`elemento esta en la posicion ${index}`));
+
+            function perro(){
+                console.log(this);
+            }
+
+            perro();
+            
+            const Dog = {
+                nombre: "Bailey",
+                ladrar:() =>{
+                    console.log(this);
+                }
+            }
+
+            Dog.ladrar();
     </script>
 </body>
 </html>
