@@ -1,0 +1,15 @@
+[
+
+    {
+        "IdTribu": 1,
+        "NombreTribu": "Space innovator",
+        "Lider": "Mateo",
+        "Puntos": 200000
+    },
+    {
+        "IdTribu": 2,
+        "NombreTribu": "custommer",
+        "Lider": "Jose",
+        "Puntos": 100000
+    }
+]
