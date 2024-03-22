@@ -27,5 +27,36 @@ function showHTML({id,Nombre,Edad,Ingles}){
     `
 }
 
+// Consumir un Array
+const loadJsonArray = document.querySelector("#loadJSONArray");
+loadJsonArray.addEventListener('click', manejarDatos);
 
+function manejarDatos(){
+    fetch('data/tribus.json')
+        .then(respuesta =>{
+            // console.log(respuesta);
+            return respuesta.json();
+        })
+        .then(resultado =>{
+            mostrarHTML(resultado);
+            console.log(resultado);
+        })
+}
+
+function mostrarHTML(tribus){
+    const container = document.querySelector("#contenido");
+    let html = '';
+    tribus.forEach(tribu => {
+        const {IdTribu,NombreTribu,Lider,Puntos} = tribu;
+        html += `
+        <p>IdTribu: ${IdTribu}</p>
+        <p>NombreTribu: ${NombreTribu}</p>
+        <p>Lider: ${Lider}</p>
+        <p>Puntos: ${Puntos}</p>
+        `
+    });
+
+    container.innerHTML = html;
+    
+}
 
