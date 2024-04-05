@@ -60,3 +60,33 @@ function mostrarHTML(tribus){
     
 }
 
+// Consumir una API Publica de INTERNET
+
+const botonApi = document.querySelector('#loadAPI');
+botonApi.addEventListener('click', apiFunction);
+
+function apiFunction(){
+    const url = "https://picsum.photos/v2/list";
+    fetch(url)
+        .then(respuesta =>{
+            // console.log(respuesta);
+            return respuesta.json();
+        })
+        .then(datos =>{
+            mostrarAPI(datos)
+            console.log(datos);
+        })
+}
+
+function mostrarAPI(resultado){
+    const container = document.querySelector("#contenido");
+    let html = '';
+    resultado.forEach(resultados => {
+        const {download_url} = resultados;
+        html += `
+        <img src=${download_url}>
+        `
+    });
+
+    container.innerHTML = html;
+}
