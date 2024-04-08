@@ -8,3 +8,10 @@ body {
   background-color: black;
   font-family: "Ubuntu", sans-serif;
 }
+
+.contenido img {
+  padding: 20px;
+  width: 700px;
+}
+
+
