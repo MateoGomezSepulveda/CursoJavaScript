@@ -11,8 +11,7 @@ const nivelCampusCamper = document.querySelector('#nivelCampus');
 const nivelInglesCamper = document.querySelector('#nivelIngles')
 const especialidadCamper = document.querySelector('#especialidad')
 const expertoTecnologiaCamper = document.querySelector('#expertoTecnologia')
-
-
+let search = document.querySelector('#search')
 
 // Inyectamos de forma dinamica los nombres y las edades
 
@@ -44,7 +43,8 @@ const parametros = {
     nivelCampus: "",
     nivelIngles: "",
     especialidad: "",
-    expertoTecnologia: ""
+    expertoTecnologia: "",
+    search: ""
 }
 
 
@@ -53,23 +53,26 @@ const parametros = {
 document.addEventListener('DOMContentLoaded', ()=>{
     showCampers(campers);
     console.log(parametros);
+    selectCamper();
 })
 
 function showCampers(campers){
     const contenedorTarjetas = document.querySelector('#tarjetas')
     limpiar()
     campers.forEach((camper) =>{
+        // Destructurar
+        const {imagen, nombre, promedio,especialidad, expertoTecnologia, detalle, id} = camper
         const camperHTML = document.createElement('p');
         camperHTML.innerHTML = `
-        <div class="card" style="width: 18rem;">
-            <img src="img/${camper.imagen}" class="card-img-top" alt="...">
+        <div class="card" style="width: 20rem;">
+            <img src="img/${imagen}" class="card-img-top" alt="..." id="imgcard">
             <div class="card-body">
-              <h5 class="card-title">${camper.nombre}</h5>
-              <p class="card-text">${camper.detalle}</p>
+              <h5 class="card-title">${nombre}</h5>
+              <p class="card-text">${detalle}</p>
             </div>
             <ul class="list-group list-group-flush">
-              <a href="#" class="btn btn-danger"> Details </a>
-            </ul>
+              <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" imagen="${imagen}" promedio="${promedio}" especialidad="${especialidad}" expertoTec="${expertoTecnologia}"> Details </a>
+              <a href="#" class="btn btn-primary boton" id="${id}"> Job Card </a>
           </div>
         `;
         contenedorTarjetas.appendChild(camperHTML);
@@ -119,7 +122,10 @@ expertoTecnologiaCamper.addEventListener('input', (e)=>{
     filtrarCamper();
 });
 
-
+search.addEventListener('input', e =>{
+    parametros.search = e.target.value
+    filtrarCamper();
+})
 
 
 
@@ -134,8 +140,22 @@ function filtrarCamper (){
     .filter(filtrarNivelIngles)
     .filter(filtrarEspecialidad)
     .filter(filtrarExpertoTecnologia)
+    .filter(filtrarSearch)
     console.log(resultado);
-    showCampers(resultado)
+    if (resultado.length) {
+        showCampers(resultado)
+    }else{
+        notResult();
+    }
+    
+}
+
+function notResult(){
+    limpiar();
+    const notResult = document.createElement("p");
+    notResult.classList.add("alert")
+    notResult.appendChild(document.createTextNode("Result Not Found"))
+    document.querySelector("#tarjetas").appendChild(notResult)
 }
 
 function filtrarNombre (camper){
@@ -194,12 +214,140 @@ function filtrarExpertoTecnologia (camper){
     return camper
 }
 
-function limpiar(){
-    let m=document.querySelectorAll('.card')
-    for(let a=0; a<m.length; a++){
-        m[a].remove()
+function filtrarSearch(camper){
+    if(parametros.search){
+        return camper.nombre === parametros.search
     }
+    return camper
 }
 
 
+function limpiar(){
+    let m=document.querySelectorAll('p')
+    for(let a=0; a<m.length; a++){
+        m[a].remove()
+    }
+}   
 
+const tbody = document.querySelector("tbody")
+const rowModal = document.createElement("tr")
+
+
+function selectCamper(){
+    const camperDetails = document.querySelector("#tarjetas")
+    camperDetails.addEventListener('click', loadDetail);
+}
+
+function loadDetail(e){
+    const imagen = e.target.getAttribute("imagen");
+    const promedio = e.target.getAttribute("promedio")
+    const especialidad = e.target.getAttribute("especialidad")
+    const expertoTec = e.target.getAttribute("expertoTec")
+    if(promedio >= 4.5){
+        var color = "gray";
+        var reporte = "Si , esta apto para firmar contrato remoto "
+    } else {
+        var color = "red";
+        var reporte = "No ,aun no esta apto para firmar contrato remoto "
+    }
+    rowModal.innerHTML = `
+    <td>
+        <img src= "img/${imagen}"  width = "150px">
+    </td>
+    <td>
+        Obtuvo un promedio de : ${promedio}
+        ${reporte}
+    </td>
+    <td>
+        ${especialidad}
+    </td>
+    <td>
+        ${expertoTec}
+    </td>            
+    `;
+    tbody.appendChild(rowModal)
+}
+
+
+// ------------------------------job Card  - hiring Campers----------------------------
+
+
+
+const cards = document.querySelector("#tarjetas")
+let arrayCards = [];
+const tbodie = document.querySelector("#tbodie")
+const deleteListCards = document.querySelector("#deleteListCards");
+const cleanCart = document.querySelector("#cleanCart")
+// listeners
+
+cards.addEventListener('click', selectCards)
+deleteListCards.addEventListener('click', deleteCards);
+cleanCart.addEventListener('click', trashCart)
+
+function selectCards(e){
+    e.preventDefault();
+    if(e.target.classList.contains("boton")){
+        const clickedCamper = e.target.parentElement.parentElement;
+        console.log(clickedCamper);
+        detail(clickedCamper)
+    }   
+}
+
+function detail(clickedCamper){
+    const camperDetail = {
+        imagen: clickedCamper.querySelector("img").src,
+        nombre: clickedCamper.querySelector("h5").textContent,
+        detalle: clickedCamper.querySelector("p").textContent,
+        id: clickedCamper.querySelector(".boton").getAttribute("id")
+    }
+    arrayCards = [...arrayCards, camperDetail]
+    console.log(arrayCards);
+    injectingCampersHtml();
+}
+
+function deleteCards(e){
+    if(e.target.classList.contains("deleteCard")){
+        const cardtoDelete = e.target.getAttribute("id");
+        console.log(cardtoDelete);
+        arrayCards = arrayCards.filter((cd)=> cd.id !== cardtoDelete);
+        injectingCampersHtml();
+    }
+}
+
+function injectingCampersHtml(){
+    clearHtml();
+    arrayCards.forEach((arrayCard)=>{
+        const {imagen, nombre, detalle, id} = arrayCard
+        const row = document.createElement("tr")
+        row.innerHTML = `
+        <td>
+            <img src="${imagen}" width="160px">
+        </td>
+        <td>
+            ${nombre}
+        </td>
+        <td>
+            ${detalle}
+        </td>
+        <td>
+            <a href="#" class="deleteCard btn btn-danger" id="${id}">X</a>
+        </td>
+        `;
+        tbodie.appendChild(row)
+        // LOCAL STORAGE
+        addStorage();
+    })
+}
+
+function addStorage(){
+    localStorage.setItem('jobCart', JSON.stringify(a))
+}
+
+function trashCart(){
+    arrayCards = [];
+    clearHtml();
+}
+
+function clearHtml(){
+    tbodie.innerHTML = "";
+}

@@ -92,3 +92,12 @@ footer{
     width: 20rem;
     object-fit: cover;
 }
+
+.alert{
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: red!important;
+    color: #f2f1f2!important;
+}

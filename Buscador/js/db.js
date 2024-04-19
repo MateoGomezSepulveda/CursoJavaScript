@@ -1,5 +1,6 @@
 const campers = [
-    {
+    {   
+        id: 1,
         imagen: "andres.jpeg",
         nombre: "Mateo Gomez",
         edad: 23,
@@ -11,6 +12,7 @@ const campers = [
         detalle: "Creador de red mundial Facebook"
     },
     {
+        id: 2,
         imagen: "alejandro.jpg",
         nombre: "phidoly isaias ojeda",
         edad: 17,
@@ -23,6 +25,7 @@ const campers = [
     },
 
     {
+        id: 3,
         imagen: "juan.jpeg",
         nombre: "Juan jose lizrazo",
         edad: 20,
@@ -35,6 +38,7 @@ const campers = [
     },
 
     {
+        id: 4,
         imagen: "jose.jpeg",
         nombre: "Juan jose lizrazo",
         edad: 20,
