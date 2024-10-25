@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.loginForm {
+    width: 300px;
+    margin: 200px auto;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
